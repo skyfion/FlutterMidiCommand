@@ -3,21 +3,25 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     ext.kotlin_version = '1.7.10'
+
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:7.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 rootProject.allprojects {
+
     repositories {
+        mavenLocal()
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -36,8 +40,13 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    dependencies {
+   
+    implementation "jp.kshoji:midi-driver:0.1.8"
+}
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "jp.kshoji:midi-driver:0.1.8"
 }
